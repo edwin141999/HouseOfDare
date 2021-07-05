@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "houseofdare2021": {
+      "hosting": {
+        "HouseOfDare": [
+          "houseofdare2021"
+        ]
+      }
+    }
+  }
+}

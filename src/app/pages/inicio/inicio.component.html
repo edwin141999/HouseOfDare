@@ -1,0 +1,12 @@
+<p>INGRESAR NOMBRES</p>
+
+<p>{{myid}}</p>
+
+<div>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <label for="nombre">name</label><br>
+        <input type="text" formControlName="nombre">
+        <button type="submit">Agregar</button>
+    </form>
+    <button>Seleccionar tipo de reto</button>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -7,24 +8,31 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
-  constructor() {}
+  nombres = [];
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
-  myid!: any;
-  myForm: any;
+  // myid!: any;
+  // myForm!: any;
 
   ngOnInit(): void {
-    this.myForm = new FormGroup({
-      nombre: new FormControl(''),
-      id: new FormControl(''),
-    });
-    this.display();
+    // this.myForm = new FormGroup({
+    //   nombre: new FormControl(''),
+    //   id: new FormControl(''),
+    // });
+    // this.display();
   }
 
-  display() {
-    this.myid = localStorage.getItem('formdata');
+  goSeleccionReto() {
+    this.router.navigate(['seleccionReto']);
   }
 
-  onSubmit() {
-    localStorage.setItem('formdata', JSON.stringify(this.myForm.value));
-  }
+  addNombre() {this.nombres.push()}
+
+  // display() {
+  //   this.myid = localStorage.getItem('formdata');
+  // }
+
+  // onSubmit() {
+  //   localStorage.setItem('formdata', JSON.stringify(this.myForm.value));
+  // }
 }

@@ -7,9 +7,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { SeleccionRetoComponent } from './pages/seleccion-reto/seleccion-reto.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,InicioComponent,SeleccionRetoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

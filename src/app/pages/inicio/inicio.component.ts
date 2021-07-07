@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -8,13 +13,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
-  nombres = [];
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  idName = 0;
+  registerNameForm!: FormGroup;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder
+  ) {}
 
   // myid!: any;
   // myForm!: any;
 
   ngOnInit(): void {
+    this.registerNameForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      id: [this.idName],
+    });
     // this.myForm = new FormGroup({
     //   nombre: new FormControl(''),
     //   id: new FormControl(''),
@@ -26,7 +41,10 @@ export class InicioComponent implements OnInit {
     this.router.navigate(['seleccionReto']);
   }
 
-  addNombre() {this.nombres.push()}
+  addNombre() {
+    console.log(this.registerNameForm.value);
+    this.idName++;    
+  }
 
   // display() {
   //   this.myid = localStorage.getItem('formdata');

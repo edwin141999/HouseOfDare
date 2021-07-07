@@ -1,7 +1,9 @@
 <div>
   <p>INGRESAR NOMBRES</p>
-  <input type="text" />
-  <button (click)="addNombre()">Ingresar Nombre</button>
+  <form (ngSubmit)="addNombre()" [formGroup]="registerNameForm">
+    <input type="text" formControlName="name" />
+    <button type="submit">Ingresar Nombre</button>
+  </form>
   <button (click)="goSeleccionReto()">Seleccionar Tipo de reto</button>
   <tbody>
     <tr>

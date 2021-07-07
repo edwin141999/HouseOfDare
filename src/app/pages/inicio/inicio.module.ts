@@ -6,7 +6,7 @@ import { InicioComponent } from './inicio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [InicioComponent],
+  declarations: [],
   imports: [
     CommonModule,
     InicioRoutingModule,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -13,8 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
-  idName = 0;
   registerNameForm!: FormGroup;
+  nombres = new FormArray([]);
 
   constructor(
     private router: Router,
@@ -22,19 +23,10 @@ export class InicioComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
-  // myid!: any;
-  // myForm!: any;
-
   ngOnInit(): void {
     this.registerNameForm = this.formBuilder.group({
       name: ['', Validators.required],
-      id: [this.idName],
     });
-    // this.myForm = new FormGroup({
-    //   nombre: new FormControl(''),
-    //   id: new FormControl(''),
-    // });
-    // this.display();
   }
 
   goSeleccionReto() {
@@ -42,15 +34,14 @@ export class InicioComponent implements OnInit {
   }
 
   addNombre() {
-    console.log(this.registerNameForm.value);
-    this.idName++;    
+    // console.log(this.registerNameForm.value);
+    let nombre = this.registerNameForm.value.name;
+    this.nombres.push(new FormControl(nombre));
+    console.log(this.nombres.controls);
+    // console.log(this.nombres);
   }
 
-  // display() {
-  //   this.myid = localStorage.getItem('formdata');
-  // }
-
-  // onSubmit() {
-  //   localStorage.setItem('formdata', JSON.stringify(this.myForm.value));
-  // }
+  removeNombre(index: number) {
+    this.nombres.removeAt(index);
+  }
 }

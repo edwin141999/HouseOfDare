@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HelperService } from 'src/app/shared/services/helper.service';
 
 @Component({
   selector: 'app-inicio',
@@ -20,7 +21,8 @@ export class InicioComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private helper: HelperService
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +40,8 @@ export class InicioComponent implements OnInit {
     let nombre = this.registerNameForm.value.name;
     this.nombres.push(new FormControl(nombre));
     console.log(this.nombres.controls);
-    // console.log(this.nombres);
+    this.helper.setNombresList(this.nombres);
+    // this.helper.setNombresList(nombre);
   }
 
   removeNombre(index: number) {

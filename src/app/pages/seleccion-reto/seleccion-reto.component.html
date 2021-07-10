@@ -25,13 +25,16 @@
             <div class="container">
                 <div class="pt-5 row">
                     <div class="col-lg-3 col-xl-3 mx-auto">
-                        <ul class="list-group">
+                        <ul class="list-group" *ngFor="let nombre of listaNombre.controls;index as i">
+                            <li class="list-group-item" >{{nombre.value}}</li>
+                        </ul>
+                        <!-- <ul class="list-group">
                             <li class="list-group-item active" aria-current="true">Cras justo odio</li>
                             <li class="list-group-item">Dapibus ac facilisis in</li>
                             <li class="list-group-item">Morbi leo risus</li>
                             <li class="list-group-item">Porta ac consectetur ac</li>
                             <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <div class="col-lg-8 col-xl-6 mx-auto">
                         <h1 class="display-4 fw-normal mb-3 text-dark">JUGAR</h1>

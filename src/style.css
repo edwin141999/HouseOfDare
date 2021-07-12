@@ -1,0 +1,12 @@
+@media (max-width:575px) {
+    .container section {
+    }
+
+    .card {
+        margin: 0;
+    }
+
+    .container {
+        padding: 0;
+    }
+}

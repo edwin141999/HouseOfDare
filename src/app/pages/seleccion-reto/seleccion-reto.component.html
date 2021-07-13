@@ -7,159 +7,220 @@
         <meta name="description" content="Pinegrow Web Editor - SAAS Bootstrap v5 Template">
         <meta name="author" content="">
         <title>Pinegrow | Bootstrap Blocks Template</title>
-        <!-- Bootstrap core CSS -->
-        <!-- <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"> -->
-        <link rel="stylesheet" href="seleccion-reto.component.css">
-        <!-- Custom styles for this template -->
-        <!-- <link href="style.css" rel="stylesheet"> -->
     </head>
-    <body class="fw-light text-secondary">
-        <nav class="bg-light navbar navbar-light">
-            <div class="container-fluid justify-content-center">
-                <a class="navbar-brand" href="#" target="_pg_blank"><img src="https://getbootstrap.com//docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-top">&nbsp;House Of Dare</a>
-            </div>
-        </nav>
-        <div class="container">
-</div>
-        <section class="bg-light pt-5 text-center">
-            <div class="container">
-                <div class="pt-5 row">
-                    <div class="col-lg-3 col-xl-3 mx-auto">
-                        <ul class="list-group" *ngFor="let nombre of listaNombre.controls;index as i">
-                            <li class="list-group-item" >{{nombre.value}}</li>
-                        </ul>
-                        <!-- <ul class="list-group">
-                            <li class="list-group-item active" aria-current="true">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul> -->
-                    </div>
-                    <div class="col-lg-8 col-xl-6 mx-auto">
-                        <h1 class="display-4 fw-normal mb-3 text-dark">JUGAR</h1>
-                        <div class="bg-light card mb-5">
-                            <div class="card">
-                                <div class=" card-header">RETO SELECCIONADO</div>
-                                <div class="card-body">
-                                    <blockquote class="blockquote mb-0">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. </p>
-                                        <footer class="blockquote-footer">RETADOR</footer>
-                                    </blockquote>
+    <body class="bg-transparent fw-light text-secondary">
+        <div class="container" id="central" *ngIf="!bandera">
+            <section class="bg-transparent pt-5 text-center">
+                <div class="container">
+                    <div class="pt-5 row">
+                        <div class="col-lg-8 col-xl-6 mx-auto">
+                            <h1 class="display-4 fw-normal mb-3 text-dark">JUGAR</h1>
+                            <div class="bg-transparent card mb-5 pt-2">
+                                <div class="bg-transparent card-body">
+                                    <h5 class="card-title">Selecciona una dificultad</h5>
+                                    <div class="flex-column mb-4 mt-4 nav nav-fill nav-justified nav-pills" id="nav-tab" role="tablist">
+                                        <a class="fw-bold nav-link" id="nav-home-tab" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Fácil</a>
+                                        <a class="active fw-bold nav-link" id="nav-comunidad-tab" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Normal</a>
+                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Dificil</a>
+                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Extremo</a>
+                                    </div>
+                                    <button class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar" (click)="bandera=true">Confirmar</button>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-title">RETADO</h5>
-                            </div>
                         </div>
-                        <a href="#" class="btn btn-danger fw-light pb-2 pe-3 ps-3 pt-2" target="_pg_blank">No hecho</a>
-                        <a href="#" class="btn btn-success fw-light pb-2 pe-3 ps-3 pt-2" target="_pg_blank">Hecho</a>
                     </div>
                 </div>
-            </div>
-        </section>
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64" width="100%" class="bg-light d-block text-dark">
+            </section>
+        </div>
+        <div class="container" *ngIf="bandera">
+            <section class="bg-transparent pt-5 text-center">
+                <div class="container">
+                    <div class="fade modal" tabindex="-1" id="exampleModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Tutorial</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Modal body text goes here.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade modal" tabindex="-1" id="participantesModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Lista de participantes</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="bg-transparent list-group-item list-inline-item text-primary">Dapibus ac facilisis in</li>
+                                        <li class="bg-transparent disabled list-group-item list-inline-item text-primary">Morbi leo risus</li>
+                                        <li class="bg-transparent list-group-item list-inline-item text-primary">Porta ac consectetur ac</li>
+                                        <li class="bg-transparent list-group-item text-primary">Vestibulum at eros</li>
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-5 row">
+                        <div class="bg-transparent col-lg-8 col-xl-6 mx-auto">
+                            <h1 class="display-4 fw-normal mb-3 text-dark">JUGAR</h1>
+                            <div class="bg-transparent card mb-4">
+                                <div class="bg-transparent card">
+                                    <div>
+                                        <nav class="bg-transparent">
+                                            <div class="border-bottom justify-content-md-center nav nav-fill nav-justified nav-pills" id="nav-tab" role="tablist">
+                                                <a class="active nav-link rounded-0 rounded-top" id="nav-home-tab" href="#nav-home" (click)="tipo=false" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Retos</a>
+                                                <a class="nav-link rounded-0 rounded-top" id="nav-comunidad-tab" href="#nav-comunidad" (click)="tipo=true" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Comunidad</a>
+                                                <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-question text-primary" viewBox="0 0 16 16" preserveAspectRatio> 
+                                                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="bg-transparent mb-5 mt-4 tab-content" id="nav-tabContent">
+                                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" *ngIf="!tipo" aria-labelledby="nav-home-tab">
+                                                    <div class="bg-transparent container pb-4 pt-4">
+                                                        <div class="align-items-center row">
+                                                            <div class="col">
+                                                                <hr class="border-secondary mb-0 mt-0"/> 
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <h1 class="h6 text-uppercase">Tu reto es</h1> 
+                                                            </div>
+                                                            <div class="col">
+                                                                <hr class="border-secondary mb-0 mt-0"/> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="bg-transparent card-body">
+                                                        <blockquote class="blockquote mb-0">
+                                                            <p class="fs-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. </p>
+                                                        </blockquote>
+                                                    </div>
+                                                    <div class="bg-transparent container pb-4 pt-4">
+                                                        <div class="align-items-center row">
+                                                            <div class="col">
+                                                                <hr class="border-secondary mb-0 mt-0"/> 
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <div class="bg-primary p-1" style="transform: rotate(45deg);"></div>                                                                 
+                                                            </div>
+                                                            <div class="col">
+                                                                <hr class="border-secondary mb-0 mt-0"/> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <h5 class="card-title fs-6">Nombre retado</h5>
+                                                </div>
+                                                <div class="tab-pane fade show active" id="nav-comunidad" role="tabpanel" *ngIf="tipo"  aria-labelledby="nav-comunidad-tab">
+                                                    <div class="container pb-4 pt-4">
+                                                        <div class="align-items-center row">
+                                                            <div class="col">
+                                                                <hr class="border-secondary mb-0 mt-0"/> 
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <h1 class="h6 text-uppercase">Tu reto es</h1> 
+                                                            </div>
+                                                            <div class="col">
+                                                                <hr class="border-secondary mb-0 mt-0"/> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <blockquote class="blockquote mb-0">
+                                                            <p class="fs-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. </p>
+                                                            <footer class="blockquote-footer">RETADOR</footer>
+                                                        </blockquote>
+                                                    </div>
+                                                    <div class="container pb-4 pt-4">
+                                                        <div class="align-items-center row">
+                                                            <div class="col">
+                                                                <hr class="border-secondary mb-0 mt-0"/> 
+                                                            </div>
+                                                            <div class="col-auto">
+                                                                <div class="bg-primary p-1" style="transform: rotate(45deg);"></div>                                                                 
+                                                            </div>
+                                                            <div class="col">
+                                                                <hr class="border-secondary mb-0 mt-0"/> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <h5 class="card-title fs-6">Nombre retado</h5>
+                                                </div>
+                                            </div>
+                                            <div class="fw-bolder justify-content-md-center nav nav-fill nav-justified shadow-sm" id="nav-tab" role="tablist">
+                                                <a class="align-items-center border-end border-top nav-link" href="#" role="tab" data-bs-target="#participantesModal" data-bs-toggle="modal"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16" preserveAspectRatio>
+                                                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                                                    </svg></a>
+                                                <a class="border-top nav-link" href="#nav-comunidad" (click)="bandera=false" role="tab" target="_pg_blank" id="cambiarDificultad">Cambiar dificultad</a>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-danger fw-light pb-2 pe-3 ps-3 pt-2" target="_pg_blank">No hecho</a>
+                            <a href="#" class="btn btn-success fw-light pb-2 pe-3 ps-3 pt-2 text-light" target="_pg_blank">Hecho</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64" width="100%" class="bg-transparent d-block text-dark" preserveAspectRatio="none" fill="currentColor">
             <path d="M 100 100 V 0 L 0 100"/>
         </svg>
-        <footer class="bg-dark pt-5 text-white"> 
+        <footer class="bg-dark pt-5"> 
             <div class="container"> 
-                <div class="row"> 
-                    <div class="col-xl-4 py-3"> 
-                        <a href="#" class="d-inline-block fw-bold h2 link-light mb-4 text-decoration-none" target="_pg_blank">House Of Dare</a> 
-                        <p class="mb-3">La casa de los retos</p> 
-                        <div class="mb-4"> 
-                            <a href="#" class="link-light text-decoration-none">+1 234 567-890</a> 
-                            <br> 
-                            <a href="#" class="link-light text-decoration-none">hello@company.com</a> 
-                        </div>                         
-                    </div>                     
-                    <div class="col-md-3 col-xl-2 py-3"> 
-                        <h2 class="fw-normal h5 mb-4 text-uppercase text-white">About</h2> 
-                        <ul class="list-unstyled"> 
-                            <li class="mb-3"> 
-                                <a href="#" class="link-light text-decoration-none">Get Quote</a> 
-                            </li>                             
-                            <li class="mb-3"> 
-                                <a href="#" class="link-light text-decoration-none">Enterprise Plan</a> 
-                            </li>                             
-                            <li class="mb-3"> 
-                                <a href="#" class="link-light text-decoration-none">Become an Affiliate</a> 
-                            </li>                             
-                            <li class="mb-3"> 
-                                <a href="#" class="link-light text-decoration-none">Our Portfolio</a> 
-                            </li>                             
-                        </ul>                         
-                    </div>                     
-                    <div class="col-md-3 col-xl-2 py-3"> 
-                        <h2 class="fw-normal h5 mb-4 text-uppercase text-white">Services</h2> 
-                        <ul class="list-unstyled"> 
-                            <li class="mb-3"> 
-                                <a href="#" class="link-light text-decoration-none">Web Design</a> 
-                            </li>                             
-                            <li class="mb-3"> 
-                                <a href="#" class="link-light text-decoration-none">Web Development</a> 
-                            </li>                             
-                            <li class="mb-3"> 
-                                <a href="#" class="link-light text-decoration-none">WordPress</a> 
-                            </li>                             
-                            <li class="mb-3"> 
-                                <a href="#" class="link-light text-decoration-none">Digital Marketing</a> 
-                            </li>                             
-                            <li class="mb-3"> 
-                                <a href="#" class="link-light text-decoration-none">Content Writing</a> 
-                            </li>                             
-                        </ul>                         
-                    </div>                     
-                    <div class="col-md-6 col-xl-4 py-3"> 
-                        <h2 class="fw-normal h5 mb-4 text-uppercase text-white">Subscribe</h2>
-                        <p class="mb-3">Subscribe to our newsletter and get exclusive updates directly in your inbox.</p>
-                        <form class="mb-4"> 
-                            <div class="bg-white border input-group p-1 rounded">
-                                <input type="email" class="border-0 form-control pe-3 ps-3" placeholder="Enter email..." aria-label="Recipient's email" aria-describedby="button-addon2" required>
-                                <button class="btn btn-primary pb-2 pe-4 ps-4 pt-2 rounded" type="submit" id="button-addon2" aria-label="submit">
-                                    <svg viewBox="0 0 24 24" fill="currentColor" class="d-inline-block" height="16" width="16">
-                                        <path d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
-                        <h2 class="fw-normal h5 mb-3 text-uppercase text-white">Get Social</h2>
+                <div class="align-items-center row">
+                    <div class="col-md pb-2 pt-2">
+                        <p class="mb-0">&copy; 20020 - 2021. Todos los derechos reservados - House Of Dare</p>
+                    </div>
+                    <div class="col-md-auto pb-2 pt-2">
                         <div class="d-inline-flex flex-wrap"> 
-                            <a href="#" class="link-light p-1" aria-label="facebook link"> <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"> 
+                            <a href="#" class="p-1 text-secondary" aria-label="facebook"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
                                     <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/> 
                                 </svg> </a> 
-                            <a href="#" class="link-light p-1" aria-label="twitter link"> <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"> 
+                            <a href="#" class="p-1 text-secondary" aria-label="twitter"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
                                     <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"/> 
                                 </svg> </a> 
-                            <a href="#" class="link-light p-1" aria-label="instagram link"> <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"> 
+                            <a href="#" class="p-1 text-secondary" aria-label="instagram"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
                                     <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/> 
                                 </svg> </a> 
-                            <a href="#" class="link-light p-1" aria-label="linkedin link"> <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"> 
+                            <a href="#" class="p-1 text-secondary" aria-label="linkedin"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
                                     <path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"/> 
                                 </svg> </a> 
-                            <a href="#" class="link-light p-1" aria-label="youtube link"> <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"> 
+                            <a href="#" class="p-1 text-secondary" aria-label="youtube"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
                                     <path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"/> 
                                 </svg> </a> 
-                        </div>                         
-                    </div>                     
-                </div>                 
-                <div class="pb-3 pt-3 small"> 
+                        </div>
+                    </div>
+                </div>
+                <div class="pb-3 pt-3 text-center"> 
                     <hr class="border-secondary mt-0"> 
-                    <div class="align-items-center row">
-                        <div class="col-md pb-2 pt-2">
-                            <p class="mb-0">&copy; 2002 - 2021 | All Rights Reserved - Company Name</p>
-                        </div>
-                        <div class="col-md-auto pb-2 pt-2">
-                            <a href="#" class="link-light text-decoration-none">Privacy Policy</a> | 
-                            <a href="#" class="link-light text-decoration-none">Terms of Use</a>
-                        </div>
-                    </div>                     
+                    <p class="mb-0">Copyright &copy; 2021 AreSolutionMy</p> 
                 </div>                 
             </div>             
         </footer>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="/src/assets/js/popper.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="/src/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#cambiarDificultad').on('click', function() {
+                    $("#central").load('select-category.html');
+                    return false;
+                });
+            });
+	    </script>
     </body>
 </html>
-
-<!-- <p>seleccion-reto works!</p> -->

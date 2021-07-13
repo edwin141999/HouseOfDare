@@ -10,6 +10,8 @@ import { HelperService } from 'src/app/shared/services/helper.service';
 export class SeleccionRetoComponent implements OnInit {
   llenadoLista = new FormArray([]);
   listaNombre = new FormArray([]);
+  public bandera: boolean = false;
+  public tipo: boolean = false;
   constructor(private helper: HelperService) {}
 
   ngOnInit(): void {

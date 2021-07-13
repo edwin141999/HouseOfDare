@@ -28,7 +28,10 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/bootstrap_theme/bootstrap.css",
+              "src/blocks.css",
+              "src/style.css"
             ],
             "scripts": []
           },

@@ -9,9 +9,10 @@ import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { SeleccionRetoComponent } from './pages/seleccion-reto/seleccion-reto.component';
+import { HelperService } from './shared/services/helper.service';
 
 @NgModule({
-  declarations: [AppComponent,InicioComponent,SeleccionRetoComponent],
+  declarations: [AppComponent, InicioComponent, SeleccionRetoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,7 +20,7 @@ import { SeleccionRetoComponent } from './pages/seleccion-reto/seleccion-reto.co
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, HelperService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

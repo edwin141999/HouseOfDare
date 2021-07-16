@@ -10,6 +10,9 @@
     </head>
     <body class="bg-transparent fw-light text-secondary">
         <div class="container" id="central" *ngIf="!bandera">
+            <!-- {{allRetos$|async|json}} -->
+            <!-- {{extraerFiltro$|async|json}} -->
+            <p class="text-light">{{selectReto$|async|json}}</p>
             <section class="bg-transparent pt-5 text-center">
                 <div class="container">
                     <div class="pt-5 row">
@@ -19,10 +22,10 @@
                                 <div class="bg-transparent card-body">
                                     <h5 class="card-title">Selecciona una dificultad</h5>
                                     <div class="flex-column mb-4 mt-4 nav nav-fill nav-justified nav-pills" id="nav-tab" role="tablist">
-                                        <a class="fw-bold nav-link" id="nav-home-tab" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Fácil</a>
-                                        <a class="active fw-bold nav-link" id="nav-comunidad-tab" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Normal</a>
-                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Dificil</a>
-                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Extremo</a>
+                                        <a class="fw-bold nav-link" id="nav-home-tab" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerDificultad('Facil')" >Fácil</a>
+                                        <a class="active fw-bold nav-link" id="nav-comunidad-tab" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerDificultad('Normal')" >Normal</a>
+                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerDificultad('Dificil')" >Dificil</a>
+                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerDificultad('Extremo')" >Extremo</a>
                                     </div>
                                     <button class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar" (click)="bandera=true">Confirmar</button>
                                 </div>
@@ -59,11 +62,14 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <ul class="list-group list-group-flush">
+                                    <!-- <ul class="list-group list-group-flush">
                                         <li class="bg-transparent list-group-item list-inline-item text-primary">Dapibus ac facilisis in</li>
                                         <li class="bg-transparent disabled list-group-item list-inline-item text-primary">Morbi leo risus</li>
                                         <li class="bg-transparent list-group-item list-inline-item text-primary">Porta ac consectetur ac</li>
                                         <li class="bg-transparent list-group-item text-primary">Vestibulum at eros</li>
+                                    </ul> -->
+                                    <ul class="list-group list-group-flush" *ngFor="let nombre of listaNombre.controls;index as i">
+                                        <li class="bg-transparent list-group-item text-primary" >{{nombre.value}}</li>
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
@@ -103,9 +109,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="bg-transparent card-body">
+                                                    <div class="bg-transparent card-body" *ngFor="let reto of selectReto$|async">
                                                         <blockquote class="blockquote mb-0">
-                                                            <p class="fs-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. </p>
+                                                            <p class="fs-5">{{reto.descripcion}}</p>
                                                         </blockquote>
                                                     </div>
                                                     <div class="bg-transparent container pb-4 pt-4">
@@ -121,7 +127,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <h5 class="card-title fs-6">Nombre retado</h5>
+                                                    <h5 class="card-title fs-6">Retado: {{nombreRandom}}</h5>
                                                 </div>
                                                 <div class="tab-pane fade show active" id="nav-comunidad" role="tabpanel" *ngIf="tipo"  aria-labelledby="nav-comunidad-tab">
                                                     <div class="container pb-4 pt-4">
@@ -169,8 +175,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" class="btn btn-danger fw-light pb-2 pe-3 ps-3 pt-2" target="_pg_blank">No hecho</a>
-                            <a href="#" class="btn btn-success fw-light pb-2 pe-3 ps-3 pt-2 text-light" target="_pg_blank">Hecho</a>
+                            <a (click)="retoCumplido(false)" class="btn btn-danger fw-light pb-2 pe-3 ps-3 pt-2" target="_pg_blank">No hecho</a>
+                            <a (click)="retoCumplido(true)" class="btn btn-success fw-light pb-2 pe-3 ps-3 pt-2 text-light" target="_pg_blank">Hecho</a>
                         </div>
                     </div>
                 </div>

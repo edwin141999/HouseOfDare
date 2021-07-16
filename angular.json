@@ -33,7 +33,10 @@
               "src/blocks.css",
               "src/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/popper.min.js",
+              "src/bootstrap/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

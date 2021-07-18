@@ -13,6 +13,7 @@
             <!-- {{allRetos$|async|json}} -->
             <!-- {{extraerFiltro$|async|json}} -->
             <p class="text-light">{{selectReto$|async|json}}</p>
+            <p class="text-light">{{selectRetoComunidad$|async|json}}</p>
             <section class="bg-transparent pt-5 text-center">
                 <div class="container">
                     <div class="pt-5 row">
@@ -143,10 +144,10 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="card-body">
+                                                    <div class="card-body" *ngFor="let reto of selectRetoComunidad$|async">
                                                         <blockquote class="blockquote mb-0">
-                                                            <p class="fs-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante. </p>
-                                                            <footer class="blockquote-footer">RETADOR</footer>
+                                                            <p class="fs-5">{{reto.descripcion}} </p>
+                                                            <footer class="blockquote-footer">Hecho por: {{reto.retador}}</footer>
                                                         </blockquote>
                                                     </div>
                                                     <div class="container pb-4 pt-4">
@@ -162,7 +163,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <h5 class="card-title fs-6">Nombre retado</h5>
+                                                    <h5 class="card-title fs-6">Retado: {{nombreRandom}}</h5>
                                                 </div>
                                             </div>
                                             <div class="fw-bolder justify-content-md-center nav nav-fill nav-justified shadow-sm" id="nav-tab" role="tablist">

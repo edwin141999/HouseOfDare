@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
+import { Comunidad } from 'src/app/shared/models/comunidad.interface';
 import { Retos } from 'src/app/shared/models/retos.interface';
 import { DatabaseService } from 'src/app/shared/services/database.service';
 import { HelperService } from 'src/app/shared/services/helper.service';
@@ -22,6 +23,11 @@ export class SeleccionRetoComponent implements OnInit {
   dificultad: string = '';
   public nombreRandom = '';
   public pos = 0;
+  //COMUNIDAD
+  public allRetosComunidad$!: Observable<Comunidad[]>;
+  public extraerFiltroComunidad$!: Observable<Comunidad[]>;
+  public selectRetoComunidad$!: Observable<Comunidad[]>;
+  public aux2: Comunidad[] = [];
 
   constructor(private helper: HelperService, private db: DatabaseService) {}
 
@@ -35,42 +41,47 @@ export class SeleccionRetoComponent implements OnInit {
     }
     //retornar todas las cartas
     this.allRetos$ = this.db.getAllRetos();
+    this.allRetosComunidad$ = this.db.getAllRetosComunidad();
   }
 
   obtenerDificultad(dato: string) {
     this.dificultad = dato;
     this.extraerFiltro$ = this.db.getRetoDificultad(this.dificultad);
-    // this.aux = [];
-    // this.extraerFiltro$.subscribe((reto) => {
-    //   var random = Math.round(Math.random() * (reto.length - 1));
-    //   this.aux.push(reto[random]);
-    //   this.selectReto$ = of(this.aux);
-    // });
-    this.actualizarRetos()
-    this.actualizarListaParticipantes()
+    this.extraerFiltroComunidad$ = this.db.getRetoComunidadDificultad(
+      this.dificultad
+    );
+    this.actualizarReto();
+    this.actualizarListaParticipantes();
   }
 
   retoCumplido(cumplio: boolean) {
     if (cumplio) {
       this.listaNombre.removeAt(this.pos);
-      this.actualizarRetos()
-      this.actualizarListaParticipantes()
-    }else{
-      this.actualizarRetos()
-      this.actualizarListaParticipantes()
+      this.actualizarReto();
+      this.actualizarListaParticipantes();
+    } else {
+      this.actualizarReto();
+      this.actualizarListaParticipantes();
     }
   }
 
-  actualizarRetos(){
+  actualizarReto() {
     this.aux = [];
     this.extraerFiltro$.subscribe((reto) => {
       var random = Math.round(Math.random() * (reto.length - 1));
       this.aux.push(reto[random]);
       this.selectReto$ = of(this.aux);
     });
+    //COMUNIDAD
+    this.aux2 = [];
+    this.extraerFiltroComunidad$.subscribe((reto) => {
+      var random = Math.round(Math.random() * (reto.length - 1));
+      this.aux2.push(reto[random]);
+      this.selectRetoComunidad$ = of(this.aux2)
+    });
   }
 
-  actualizarListaParticipantes(){
+  actualizarListaParticipantes() {
     var random = Math.round(Math.random() * (this.listaNombre.length - 1));
     this.pos = random;
     this.nombreRandom = this.listaNombre.value[random];

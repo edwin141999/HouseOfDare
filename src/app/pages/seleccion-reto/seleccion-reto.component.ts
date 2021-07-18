@@ -33,34 +33,46 @@ export class SeleccionRetoComponent implements OnInit {
       // console.log(this.llenadoLista.value[0][i]);
       this.listaNombre.push(new FormControl(this.llenadoLista.value[0][i]));
     }
-    //jugador aleatorio
-    var random = Math.round(Math.random() * (this.listaNombre.length - 1));
-    this.pos = random;
-    this.nombreRandom = this.listaNombre.value[random];
     //retornar todas las cartas
-    // this.db.getAllRetos().subscribe((res) => console.log('RETOS', res));
     this.allRetos$ = this.db.getAllRetos();
   }
 
   obtenerDificultad(dato: string) {
     this.dificultad = dato;
-    // console.log(this.dificultad);
-    // this.filtrarDificultad();
     this.extraerFiltro$ = this.db.getRetoDificultad(this.dificultad);
-    this.aux = [];
-    this.extraerFiltro$.subscribe((ver2) => {
-      var random = Math.round(Math.random() * (ver2.length - 1));
-      // console.log(ver2[random]);
-      this.aux.push(ver2[random]);
-      // console.log('2', ver2);
-      // console.log('3', this.arr);
-      this.selectReto$ = of(this.aux);
-    });
+    // this.aux = [];
+    // this.extraerFiltro$.subscribe((reto) => {
+    //   var random = Math.round(Math.random() * (reto.length - 1));
+    //   this.aux.push(reto[random]);
+    //   this.selectReto$ = of(this.aux);
+    // });
+    this.actualizarRetos()
+    this.actualizarListaParticipantes()
   }
 
   retoCumplido(cumplio: boolean) {
     if (cumplio) {
       this.listaNombre.removeAt(this.pos);
+      this.actualizarRetos()
+      this.actualizarListaParticipantes()
+    }else{
+      this.actualizarRetos()
+      this.actualizarListaParticipantes()
     }
+  }
+
+  actualizarRetos(){
+    this.aux = [];
+    this.extraerFiltro$.subscribe((reto) => {
+      var random = Math.round(Math.random() * (reto.length - 1));
+      this.aux.push(reto[random]);
+      this.selectReto$ = of(this.aux);
+    });
+  }
+
+  actualizarListaParticipantes(){
+    var random = Math.round(Math.random() * (this.listaNombre.length - 1));
+    this.pos = random;
+    this.nombreRandom = this.listaNombre.value[random];
   }
 }

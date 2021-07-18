@@ -41,6 +41,9 @@ export class InicioComponent implements OnInit {
     this.nombres.push(new FormControl(nombre));
     console.log(this.nombres.controls);
     this.helper.setNombresList(this.nombres);
+    // for (let i = 0; i < this.nombres.length; i++) {
+    //   localStorage.setItem('nombres '+[i],this.nombres.value[i])  
+    // }    
     // this.helper.setNombresList(nombre);
   }
 

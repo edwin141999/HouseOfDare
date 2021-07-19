@@ -1,15 +1,26 @@
-<nav class="bg-dark navbar navbar-dark shadow">
-  <div class="container-fluid justify-content-center">
-    <a class="fs-3 h1 navbar-brand text-light" href="#" target="_pg_blank"
-      ><img
-        src="https://getbootstrap.com//docs/5.0/assets/brand/bootstrap-logo.svg"
-        alt=""
-        width="30"
-        height="24"
-        class="d-inline-block align-top"
-      />
-      House Of Dare</a
-    >
+<div class="bg-dark navigation-wrap start-header start-style">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <nav class="navbar navbar-dark navbar-expand-md">
+                  <a class="navbar-brand"><img src="https://getbootstrap.com//docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-top">House Of Dare</a> 
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse justify-content-end navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav ml-auto py-4 py-md-0">
+                          <li class="m-1 ml-0 ml-md-4 nav-item pl-4 pl-md-0 text-center">
+                              <a class="home-navbar nav-link text-light" href="#">Home</a>
+                          </li>
+                          <li class="m-1 ml-0 ml-md-4 nav-item pl-4 pl-md-0 text-center">
+                              <button type="button" class="btn btn-primary crear-reto text-light">Crear retos</button>
+                          </li>
+                      </ul>
+                  </div>
+              </nav>
+          </div>
+      </div>
   </div>
-</nav>
+</div>
 <router-outlet></router-outlet>
+

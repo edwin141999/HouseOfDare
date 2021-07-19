@@ -38,6 +38,7 @@ export class InicioComponent implements OnInit {
   addNombre() {
     // console.log(this.registerNameForm.value);
     let nombre = this.registerNameForm.value.name;
+    this.registerNameForm.reset()
     this.nombres.push(new FormControl(nombre));
     console.log(this.nombres.controls);
     this.helper.setNombresList(this.nombres);

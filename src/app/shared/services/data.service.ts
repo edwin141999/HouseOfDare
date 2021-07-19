@@ -5,28 +5,28 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-export interface Card {
-  title: string;
-  id: string;
+export interface Comunidad {
+  // id: string;
   dificultad: string;
   description: string;
+  retador: string;
 }
 
 @Injectable()
 export class DataService {
-  contacts!: Observable<any>;
-  private cardsCollection: AngularFirestoreCollection<any>;
+  comunidad!: Observable<Comunidad>;
+  private comunidadCollection: AngularFirestoreCollection<Comunidad>;
 
   constructor(private readonly afs: AngularFirestore) {
-    this.cardsCollection = afs.collection<any>('retos');
+    this.comunidadCollection = afs.collection<Comunidad>('comunidad');
   }
 
-  async onSaveCard(contactForm: any): Promise<void> {
+  async onSaveRetoComunidad(comunidadForm: Comunidad): Promise<void> {
     return new Promise(async (resolve, reject) => {
       try {
         const id = this.afs.createId();
-        const data = { id, ...contactForm };
-        const result = this.cardsCollection.doc(id).set(data);
+        const data = {...comunidadForm };
+        const result = this.comunidadCollection.doc(id).set(data);
         resolve(result);
       } catch (error) {
         reject(error.message);

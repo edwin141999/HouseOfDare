@@ -10,10 +10,10 @@
                   <div class="collapse justify-content-end navbar-collapse" id="navbarSupportedContent">
                       <ul class="navbar-nav ml-auto py-4 py-md-0">
                           <li class="m-1 ml-0 ml-md-4 nav-item pl-4 pl-md-0 text-center">
-                              <a class="home-navbar nav-link text-light" href="#">Home</a>
+                              <a class="home-navbar nav-link text-light" type="button" (click)="goHome()" >Home</a>
                           </li>
                           <li class="m-1 ml-0 ml-md-4 nav-item pl-4 pl-md-0 text-center">
-                              <button type="button" class="btn btn-primary crear-reto text-light">Crear retos</button>
+                              <button type="button" class="btn btn-primary crear-reto text-light" (click)="goCreateRetoComunidad()" >Crear retos</button>
                           </li>
                       </ul>
                   </div>

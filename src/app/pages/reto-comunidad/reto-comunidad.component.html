@@ -8,10 +8,20 @@
         <meta name="author" content="">
         <title>Pinegrow | Bootstrap Blocks Template</title>
     </head>
-    <body class="bg-transparent fw-light text-secondary">
-        <div class="container" id="central">
-            <section class="bg-light pt-5 text-center">
-                <!-- aqui inicia -->
+    <body class="text-secondary" style="background-image: radial-gradient(circle at 68.3% 118.3%, #fd5541 0, #f23c3c 50%, #e71638 100%);">
+        <div class="navigation-wrap shadow start-header start-style">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="justify-content-center navbar navbar-dark navbar-expand-md">
+                            <a href="inicio" class="border border-2 border-light fw-bold lh-1 navbar-brand p-2 text-light">House Of Dare</a> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-transparent container" id="central">
+            <section class="bg-transparent text-center">
                 <div class="fade modal" tabindex="-1" id="exampleModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -21,8 +31,7 @@
                             </div>
                             <div class="modal-body">
                                 <p>Este campo es opcional, si deseas darte a conocer como
-	el creador de este reto puedes poner el nombre que desees aqui
-</p>
+	el creador de este reto puedes poner el nombre que desees aqui</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -30,12 +39,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- modal finish -->
                 <div class="fade modal" tabindex="-1" id="modalAgradecer">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <!-- <h5 class="modal-title">Gracias</h5> -->
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -49,10 +56,10 @@
                 </div>
                 <div class="container">
                     <div class="pt-5 row">
-                        <div class="col-lg-8 col-xl-6 mx-auto">
-                            <section class="bg-light">
-                                <div class="container pb-5 pt-5"> 
-                                    <div class="bg-white p-4 shadow"> 
+                        <div class="bg-transparent col-lg-8 col-xl-6 mx-auto">
+                            <section class="bg-transparent">
+                                <div class="bg-transparent container pb-5 pt-5"> 
+                                    <div class="bg-white p-4 rounded-1 shadow"> 
                                         <h2>¡Crea tus propios retos!</h2>
                                         <h6>Desafia a otros jugadores con tus mas atrevidos retos</h6>
                                         <div class="container pb-4 pt-4">
@@ -70,23 +77,6 @@
                                         </div>                                         
                                         <form (ngSubmit)="onSave()" [formGroup]='comunidadForm'> 
                                             <div class="mb-3"> 
-                                                <!-- <div class="dropdown">
-                                                    <button class="border border-1 border-primary btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" >Selecciona una dificultad</button>
-                                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" >
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Facil</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Normal</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Dificil</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Extremo</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>                                                  -->
                                                 <select class="form-select border border-1 border-primary btn dropdown-toggle" formControlName='dificultad' [class]="esValido('dificultad')">
                                                     <option selected disabled>Selecciona una dificultad</option>
                                                     <option>Facil</option>
@@ -109,7 +99,7 @@
                                                 </div>                                                 
                                             </div>
                                             <button type="submit" class="btn d-block w-100 btn-primary rounded-0 text-uppercase" (click)='goComunidad()' data-bs-toggle="modal" data-bs-target="#modalAgradecer" >CONFIRMAR</button>                                             
-                                        </form>                                         
+                                        </form>                                          
                                     </div>                                     
                                 </div>                                 
                             </section>
@@ -118,16 +108,5 @@
                 </div>
             </section>
         </div>
-        <!-- <script src="assets/js/popper.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script> -->
-        <!-- <script type="text/javascript">
-            $(document).ready(function() {
-                $('#cambiarDificultad').on('click', function() {
-                    $("#central").load('select-category.html');
-                    return false;
-                });
-            });
-	    </script> -->
     </body>
 </html>

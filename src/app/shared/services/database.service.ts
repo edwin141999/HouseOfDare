@@ -8,7 +8,7 @@ import { Retos } from '../models/retos.interface';
 @Injectable({ providedIn: 'root' })
 export class DatabaseService {
   //RETOS ALEATORIOS
-  public retosDificultad$!: Observable<Retos[]>;
+  public retosCategoria$!: Observable<Retos[]>;
   //RETOS DE LA COMUNIDAD
   public retosComunidad$!: Observable<Comunidad[]>;
 
@@ -30,12 +30,12 @@ export class DatabaseService {
       );
   }
 
-  public getRetoDificultad(dificultad: string): Observable<Retos[]> {
-    this.retosDificultad$ = this.getAllRetos();
+  public getRetoCategoria(categoria: string): Observable<Retos[]> {
+    this.retosCategoria$ = this.getAllRetos();
 
-    return this.retosDificultad$.pipe(
+    return this.retosCategoria$.pipe(
       map((cartas) =>
-        cartas.filter((reto) => reto.dificultad.toString() == dificultad)
+        cartas.filter((reto) => reto.categoria.toString() == categoria)
       )
     );
   }
@@ -56,14 +56,12 @@ export class DatabaseService {
       );
   }
 
-  public getRetoComunidadDificultad(
-    dificultad: string
-  ): Observable<Comunidad[]> {
+  public getRetoComunidadCategoria(categoria: string): Observable<Comunidad[]> {
     this.retosComunidad$ = this.getAllRetosComunidad();
 
     return this.retosComunidad$.pipe(
       map((cartas) =>
-        cartas.filter((reto) => reto.dificultad.toString() == dificultad)
+        cartas.filter((reto) => reto.categoria.toString() == categoria)
       )
     );
   }

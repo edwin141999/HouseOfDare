@@ -1,5 +1,5 @@
 export interface Comunidad {
-  dificultad: string;
+  categoria: string;
   descripcion: string;
   retador: string;
 }

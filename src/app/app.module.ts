@@ -13,7 +13,12 @@ import { HelperService } from './shared/services/helper.service';
 import { RetoComunidadComponent } from './pages/reto-comunidad/reto-comunidad.component';
 
 @NgModule({
-  declarations: [AppComponent, InicioComponent, SeleccionRetoComponent, RetoComunidadComponent],
+  declarations: [
+    AppComponent,
+    InicioComponent,
+    SeleccionRetoComponent,
+    RetoComunidadComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

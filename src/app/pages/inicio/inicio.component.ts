@@ -31,24 +31,41 @@ export class InicioComponent implements OnInit {
     });
   }
 
-  goSeleccionReto() {
-    this.router.navigate(['seleccionReto']);
+  goSeleccionReto(): boolean {
+    if (this.nombres.length < 2) {
+      console.log('no');
+      return false;
+    } else {
+      console.log('si');
+      this.router.navigate(['seleccionReto']);
+      return true;
+    }
   }
 
   addNombre() {
-    // console.log(this.registerNameForm.value);
-    let nombre = this.registerNameForm.value.name;
-    this.registerNameForm.reset()
-    this.nombres.push(new FormControl(nombre));
-    console.log(this.nombres.controls);
-    this.helper.setNombresList(this.nombres);
-    // for (let i = 0; i < this.nombres.length; i++) {
-    //   localStorage.setItem('nombres '+[i],this.nombres.value[i])  
-    // }    
-    // this.helper.setNombresList(nombre);
+    if (this.registerNameForm.valid) {
+      // console.log(this.registerNameForm.value);
+      let nombre = this.registerNameForm.value.name;
+      this.registerNameForm.reset();
+      this.nombres.push(new FormControl(nombre));
+      console.log(this.nombres.controls);
+      this.helper.setNombresList(this.nombres);
+      // this.helper.setNombresList(nombre);
+    } else {
+      console.log('Not Valid');
+    }
   }
 
   removeNombre(index: number) {
     this.nombres.removeAt(index);
+  }
+
+  esValido(field: string): string {
+    const validateField = this.registerNameForm.get(field);
+    return !validateField?.valid && validateField?.touched
+      ? 'is-invalid'
+      : validateField?.touched
+      ? 'is-valid'
+      : '';
   }
 }

@@ -20,7 +20,7 @@ export class SeleccionRetoComponent implements OnInit {
   public extraerFiltro$!: Observable<Retos[]>;
   public selectReto$!: Observable<Retos[]>;
   public aux: Retos[] = [];
-  dificultad: string = '';
+  categoria: string = '';
   public nombreRandom = '';
   public pos = 0;
   //COMUNIDAD
@@ -44,11 +44,11 @@ export class SeleccionRetoComponent implements OnInit {
     this.allRetosComunidad$ = this.db.getAllRetosComunidad();
   }
 
-  obtenerDificultad(dato: string) {
-    this.dificultad = dato;
-    this.extraerFiltro$ = this.db.getRetoDificultad(this.dificultad);
-    this.extraerFiltroComunidad$ = this.db.getRetoComunidadDificultad(
-      this.dificultad
+  obtenerCategoria(dato: string) {
+    this.categoria = dato;
+    this.extraerFiltro$ = this.db.getRetoCategoria(this.categoria);
+    this.extraerFiltroComunidad$ = this.db.getRetoComunidadCategoria(
+      this.categoria
     );
     this.actualizarReto();
     this.actualizarListaParticipantes();

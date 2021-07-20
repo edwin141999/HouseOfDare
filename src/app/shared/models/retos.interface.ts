@@ -1,5 +1,5 @@
 export interface Retos{
     titulo:string;
-    dificultad:string;
+    categoria:string;
     descripcion:string;
 }

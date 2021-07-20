@@ -6,27 +6,38 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Pinegrow Web Editor - SAAS Bootstrap v5 Template">
         <meta name="author" content="">
-        <title>House Of Dare</title>
+        <title>Pinegrow | Bootstrap Blocks Template</title>
     </head>
-    <body class="bg-transparent fw-light text-secondary">
+    <body class="text-secondary" style="background-image: radial-gradient(circle at 68.3% 118.3%, #fd5541 0, #f23c3c 50%, #e71638 100%);">
+        <div class="navigation-wrap shadow start-header start-style">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="justify-content-center navbar navbar-dark navbar-expand-md">
+                            <a class="border border-2 border-light fw-bold lh-1 navbar-brand p-2 text-light" href="inicio">House Of Dare</a> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <p class="text">{{selectReto$|async|json}}, {{selectRetoComunidad$|async|json}}</p> -->
         <div class="container" id="central" *ngIf="!bandera">
-            <!-- {{allRetos$|async|json}} -->
-            <!-- {{extraerFiltro$|async|json}} -->
-            <p class="text-light">{{selectReto$|async|json}}</p>
-            <p class="text-light">{{selectRetoComunidad$|async|json}}</p>
-            <section class="bg-transparent pt-5 text-center">
+            <section class="pt-5 text-center">
                 <div class="container">
                     <div class="pt-5 row">
                         <div class="col-lg-8 col-xl-6 mx-auto">
-                            <h1 class="display-4 fw-normal mb-3 text-dark">JUGAR</h1>
-                            <div class="bg-transparent card mb-5 pt-2">
+                            <h1 class="display-4 fw-normal mb-3 text-light">JUGAR</h1>
+                            <div class="card mb-5 pt-2">
                                 <div class="bg-transparent card-body">
-                                    <h5 class="card-title">Selecciona una dificultad</h5>
+                                    <h5 class="card-title">Selecciona una categoria</h5>
                                     <div class="flex-column mb-4 mt-4 nav nav-fill nav-justified nav-pills" id="nav-tab" role="tablist">
-                                        <a class="fw-bold nav-link" id="nav-home-tab" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerDificultad('Facil')" >Fácil</a>
-                                        <a class="active fw-bold nav-link" id="nav-comunidad-tab" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerDificultad('Normal')" >Normal</a>
-                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerDificultad('Dificil')" >Dificil</a>
-                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerDificultad('Extremo')" >Extremo</a>
+                                        <a class="active fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Clasico')" >Clasico</a>
+                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Familiar')" >Familiar</a>
+                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Menor de edad')" >Menor de edad</a>
+                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Fiesta')" >Fiesta</a>
+                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Antro')" >Antro</a>
+                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Ligero')" >Ligero</a>
+                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Extremo')" >Extremo</a>
                                     </div>
                                     <button class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar" (click)="bandera=true">Confirmar</button>
                                 </div>
@@ -36,7 +47,7 @@
                 </div>
             </section>
         </div>
-        <div class="container" *ngIf="bandera">
+        <div class="container pb-5" *ngIf="bandera">
             <section class="bg-transparent pt-5 text-center">
                 <div class="container">
                     <div class="fade modal" tabindex="-1" id="exampleModal">
@@ -63,12 +74,6 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <!-- <ul class="list-group list-group-flush">
-                                        <li class="bg-transparent list-group-item list-inline-item text-primary">Dapibus ac facilisis in</li>
-                                        <li class="bg-transparent disabled list-group-item list-inline-item text-primary">Morbi leo risus</li>
-                                        <li class="bg-transparent list-group-item list-inline-item text-primary">Porta ac consectetur ac</li>
-                                        <li class="bg-transparent list-group-item text-primary">Vestibulum at eros</li>
-                                    </ul> -->
                                     <ul class="list-group list-group-flush" *ngFor="let nombre of listaNombre.controls;index as i">
                                         <li class="bg-transparent list-group-item text-primary" >{{nombre.value}}</li>
                                     </ul>
@@ -81,11 +86,11 @@
                     </div>
                     <div class="pt-5 row">
                         <div class="bg-transparent col-lg-8 col-xl-6 mx-auto">
-                            <h1 class="display-4 fw-normal mb-3 text-dark">JUGAR</h1>
+                            <h1 class="display-4 fw-normal mb-3 text-light">JUGAR</h1>
                             <div class="bg-transparent card mb-4">
-                                <div class="bg-transparent card">
+                                <div class="bg-light card p-1">
                                     <div>
-                                        <nav class="bg-transparent">
+                                        <nav class="bg-transparent">    
                                             <div class="border-bottom justify-content-md-center nav nav-fill nav-justified nav-pills" id="nav-tab" role="tablist">
                                                 <a class="active nav-link rounded-0 rounded-top" id="nav-home-tab" href="#nav-home" (click)="tipo=false" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Retos</a>
                                                 <a class="nav-link rounded-0 rounded-top" id="nav-comunidad-tab" href="#nav-comunidad" (click)="tipo=true" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Comunidad</a>
@@ -164,70 +169,71 @@
                                                         </div>
                                                     </div>
                                                     <h5 class="card-title fs-6">Retado: {{nombreRandom}}</h5>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-link dropdown-toggle fs-6 text-muted" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" type="button">¡Ayudanos!</button>
+                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <li>
+                                                                <div class="bg-light text-center">
+                                                                    <div class="card-body">
+                                                                        <h5 class="card-title">¡Ayudanos a mejorar los retos!</h5>
+                                                                        <p class="card-text fs-5">¿Consideras que este reto es adecuado para esta categoría?</p>
+                                                                        <a href="#" class="btn btn-danger me-1 ms-1 pb-2 pe-3 ps-3 pt-2" target="_pg_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-hand-thumbs-down" viewBox="0 0 16 16" preserveAspectRatio> 
+                                                                                <path d="M8.864 15.674c-.956.24-1.843-.484-1.908-1.42-.072-1.05-.23-2.015-.428-2.59-.125-.36-.479-1.012-1.04-1.638-.557-.624-1.282-1.179-2.131-1.41C2.685 8.432 2 7.85 2 7V3c0-.845.682-1.464 1.448-1.546 1.07-.113 1.564-.415 2.068-.723l.048-.029c.272-.166.578-.349.97-.484C6.931.08 7.395 0 8 0h3.5c.937 0 1.599.478 1.934 1.064.164.287.254.607.254.913 0 .152-.023.312-.077.464.201.262.38.577.488.9.11.33.172.762.004 1.15.069.13.12.268.159.403.077.27.113.567.113.856 0 .289-.036.586-.113.856-.035.12-.08.244-.138.363.394.571.418 1.2.234 1.733-.206.592-.682 1.1-1.2 1.272-.847.283-1.803.276-2.516.211a9.877 9.877 0 0 1-.443-.05 9.364 9.364 0 0 1-.062 4.51c-.138.508-.55.848-1.012.964l-.261.065zM11.5 1H8c-.51 0-.863.068-1.14.163-.281.097-.506.229-.776.393l-.04.025c-.555.338-1.198.73-2.49.868-.333.035-.554.29-.554.55V7c0 .255.226.543.62.65 1.095.3 1.977.997 2.614 1.709.635.71 1.064 1.475 1.238 1.977.243.7.407 1.768.482 2.85.025.362.36.595.667.518l.262-.065c.16-.04.258-.144.288-.255a8.34 8.34 0 0 0-.145-4.726.5.5 0 0 1 .595-.643h.003l.014.004.058.013a8.912 8.912 0 0 0 1.036.157c.663.06 1.457.054 2.11-.163.175-.059.45-.301.57-.651.107-.308.087-.67-.266-1.021L12.793 7l.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581 0-.211-.027-.414-.075-.581-.05-.174-.111-.273-.154-.315l-.353-.354.353-.354c.047-.047.109-.176.005-.488a2.224 2.224 0 0 0-.505-.804l-.353-.354.353-.354c.006-.005.041-.05.041-.17a.866.866 0 0 0-.121-.415C12.4 1.272 12.063 1 11.5 1z"/>
+                                                                            </svg> NO</a>
+                                                                        <a href="#" class="btn btn-success me-1 ms-1 pb-2 pe-3 ps-3 pt-2 text-light" target="_pg_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16" preserveAspectRatio> 
+                                                                                <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111L8.864.046zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
+                                                                            </svg> SI</a>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="fw-bolder justify-content-md-center nav nav-fill nav-justified shadow-sm" id="nav-tab" role="tablist">
-                                                <a class="align-items-center border-end border-top nav-link" href="#" role="tab" data-bs-target="#participantesModal" data-bs-toggle="modal"><svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16" preserveAspectRatio>
-                                                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
-                                                    </svg></a>
-                                                <a class="border-top nav-link" href="#nav-comunidad" (click)="bandera=false" role="tab" target="_pg_blank" id="cambiarDificultad">Cambiar dificultad</a>
+                                            <div class="justify-content-md-center nav nav-fill nav-justified shadow-sm" id="nav-tab" role="tablist">
+                                                <a class="align-items-center border-end border-top nav-link" href="#" role="tab" data-bs-target="#participantesModal" data-bs-toggle="modal">Participantes</a>
+                                                <a class="border-top nav-link" href="#nav-comunidad" (click)="bandera=false" role="tab" target="_pg_blank" id="cambiarDificultad">Dificultad</a>
                                             </div>
                                         </nav>
                                     </div>
                                 </div>
                             </div>
-                            <a (click)="retoCumplido(false)" class="btn btn-danger fw-light me-1 ms-1 pb-2 pe-3 ps-3 pt-2">No hecho</a>
-                            <a (click)="retoCumplido(true)" class="btn btn-success fw-light me-1 ms-1 pb-2 pe-3 ps-3 pt-2 text-light">Hecho</a>
+                            <a (click)="retoCumplido(false)" class="btn btn-danger me-1 ms-1 pb-2 pe-3 ps-3 pt-2">No hecho</a>
+                            <a (click)="retoCumplido(true)" class="btn btn-success me-1 ms-1 pb-2 pe-3 ps-3 pt-2 text-light">Hecho</a>
                         </div>
                     </div>
                 </div>
             </section>
-        </div>
-        <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64" width="100%" class="bg-transparent d-block text-dark" preserveAspectRatio="none" fill="currentColor">
-            <path d="M 100 100 V 0 L 0 100"/>
-        </svg>
-        <footer class="bg-dark pt-5"> 
-            <div class="container"> 
+<!--             <div class="container pb-4 pt-4">
                 <div class="align-items-center row">
-                    <div class="col-md pb-2 pt-2">
-                        <p class="mb-0">&copy; 20020 - 2021. Todos los derechos reservados - House Of Dare</p>
+                    <div class="col">
+                        <hr class="bg-light border-danger mb-0 mt-0"/> 
                     </div>
-                    <div class="col-md-auto pb-2 pt-2">
-                        <div class="d-inline-flex flex-wrap"> 
-                            <a href="#" class="p-1 text-secondary" aria-label="facebook"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
-                                    <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/> 
-                                </svg> </a> 
-                            <a href="#" class="p-1 text-secondary" aria-label="twitter"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
-                                    <path d="M22.162 5.656a8.384 8.384 0 0 1-2.402.658A4.196 4.196 0 0 0 21.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 0 0-7.126 3.814 11.874 11.874 0 0 1-8.62-4.37 4.168 4.168 0 0 0-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 0 1-1.894-.523v.052a4.185 4.185 0 0 0 3.355 4.101 4.21 4.21 0 0 1-1.89.072A4.185 4.185 0 0 0 7.97 16.65a8.394 8.394 0 0 1-6.191 1.732 11.83 11.83 0 0 0 6.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.496 8.496 0 0 0 2.087-2.165z"/> 
-                                </svg> </a> 
-                            <a href="#" class="p-1 text-secondary" aria-label="instagram"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
-                                    <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 0 1 1.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 0 1-1.153 1.772 4.915 4.915 0 0 1-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 0 1-1.772-1.153 4.904 4.904 0 0 1-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 0 1 1.153-1.772A4.897 4.897 0 0 1 5.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.25a1.25 1.25 0 0 0-2.5 0 1.25 1.25 0 0 0 2.5 0zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/> 
-                                </svg> </a> 
-                            <a href="#" class="p-1 text-secondary" aria-label="linkedin"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
-                                    <path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"/> 
-                                </svg> </a> 
-                            <a href="#" class="p-1 text-secondary" aria-label="youtube"> <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"> 
-                                    <path d="M21.543 6.498C22 8.28 22 12 22 12s0 3.72-.457 5.502c-.254.985-.997 1.76-1.938 2.022C17.896 20 12 20 12 20s-5.893 0-7.605-.476c-.945-.266-1.687-1.04-1.938-2.022C2 15.72 2 12 2 12s0-3.72.457-5.502c.254-.985.997-1.76 1.938-2.022C6.107 4 12 4 12 4s5.896 0 7.605.476c.945.266 1.687 1.04 1.938 2.022zM10 15.5l6-3.5-6-3.5v7z"/> 
-                                </svg> </a> 
+                    <div class="col-auto">
+                        <span class="bg-danger d-block p-1 rounded-circle"><svg viewBox="0 0 24 24" fill="none" width="24" height="24" class="d-block text-white">
+                                <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" fill="currentColor"/>
+                            </svg></span> 
+                    </div>
+                    <div class="col">
+                        <hr class="bg-light border-danger mb-0 mt-0"/> 
+                    </div>
+                </div>
+            </div>
+            <section class="bg-transparent pt-5 text-center">
+                <div class="container">
+                    <div class="mb-4 mt-2 row">
+                        <div class="bg-transparent col-lg-8 col-xl-6 mx-auto">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">¡Crea tus propios retos!</h5>
+                                    <p class="card-text">Ayudanos y has crecer el sitio creando tus propios retos</p>
+                                    <a href="#" class="btn btn-primary" target="_pg_blank">Crear</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="pb-3 pt-3 text-center"> 
-                    <hr class="border-secondary mt-0"> 
-                    <p class="mb-0">Copyright &copy; 2021 AreSolutionMy</p> 
-                </div>
-            </div>
-        </footer>
-        <script src="/src/assets/js/popper.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="/src/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#cambiarDificultad').on('click', function() {
-                    $("#central").load('select-category.html');
-                    return false;
-                });
-            });
-	    </script>
+            </section> -->
+        </div>
     </body>
 </html>

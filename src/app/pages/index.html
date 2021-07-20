@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Pinegrow Web Editor - SAAS Bootstrap v5 Template">
+        <meta name="author" content="">
+        <title>Pinegrow | Bootstrap Blocks Template</title>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="blocks.css">
+        <!-- Custom styles for this template -->
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body class="h-auto mw-100 text-secondary" style="background-image: radial-gradient(circle at 68.3% 118.3%, #fd5541 0, #f23c3c 50%, #e71638 100%);">
+        <div class="navigation-wrap shadow start-header start-style">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="justify-content-center navbar navbar-dark navbar-expand-md">
+                            <a class="border border-2 border-light fw-bold lh-1 navbar-brand p-2 text-light">House Of Dare</a> 
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-transparent container" id="central">
+            <section class="bg-transparent pt-5 text-center">
+                <div class="container">
+                    <div class="pt-5 row">
+                        <div class="bg-transparent col-lg-8 col-xl-6 mx-auto">
+                            <h1 class="bg-transparent display-4 fw-normal mb-3 text-light">JUGAR</h1>
+                            <div class="bg-light card mb-5 pt-2 shadow-lg">
+                                <table class="mb-1 mt-1">
+                                    <tr>
+                                        <td>Participante #1</td>
+                                        <td class="text-center w-25">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="bg-transparent card-body">
+                                    <h5 class="card-title">Crea tu lista para comenzar a jugar</h5>
+                                    <p class="card-text">Ingrese el nombre de los participantes</p>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="bg-light border-danger form-control" placeholder="Nombre" aria-label="Recipient's username" aria-describedby="button-addon2" required="true">
+                                        <button class="border-danger btn btn-outline-info text-primary" type="button" id="button-addon2">Agregar</button>
+                                    </div>
+                                    <button class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar">Confirmar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script type="text/javascript">
+		$(document).ready(function() {
+			$('#confirmar').on('click', function() {
+				$("#central").load('select-category.html');
+				return false;
+			});
+		});
+	</script>
+    </body>
+</html>

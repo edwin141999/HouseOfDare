@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Pinegrow Web Editor - SAAS Bootstrap v5 Template">
+        <meta name="author" content="">
+        <title>Pinegrow | Bootstrap Blocks Template</title>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="blocks.css">
+        <!-- Custom styles for this template -->
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body class="text-secondary" style="background-image: radial-gradient(circle at 68.3% 118.3%, #fd5541 0, #f23c3c 50%, #e71638 100%);">
+        <div class="container" id="central">
+            <section class="pt-5 text-center">
+                <div class="container">
+                    <div class="pt-5 row">
+                        <div class="col-lg-8 col-xl-6 mx-auto">
+                            <h1 class="display-4 fw-normal mb-3 text-light">JUGAR</h1>
+                            <div class="card mb-5 pt-2">
+                                <div class="bg-transparent card-body">
+                                    <h5 class="card-title">Selecciona una dificultad</h5>
+                                    <div class="flex-column mb-4 mt-4 nav nav-fill nav-justified nav-pills" id="nav-tab" role="tablist">
+                                        <a class="fw-bold nav-link" id="nav-home-tab" href="#nav-home" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Fácil</a>
+                                        <a class="active fw-bold nav-link" id="nav-comunidad-tab" href="#nav-comunidad" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Normal</a>
+                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" href="#nav-comunidad" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Dificil</a>
+                                        <a class="fw-bold nav-link" id="nav-comunidad-tab" href="#nav-comunidad" role="tab" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill">Extremo</a>
+                                    </div>
+                                    <button class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar">Confirmar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script type="text/javascript">
+		$(document).ready(function() {
+			$('#confirmar').on('click', function() {
+				$("#central").load('game_page.html');
+				return false;
+			});
+		});
+	</script>
+    </body>
+</html>

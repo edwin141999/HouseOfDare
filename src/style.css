@@ -10,3 +10,14 @@
         padding: 0;
     }
 }
+
+@media (max-width:767px) {
+    .crear-reto {
+        width: 100%;
+    }
+
+    .home-navbar {
+        border: #d90429 0.15rem solid;
+        border-radius: 0.3rem;
+    }
+}

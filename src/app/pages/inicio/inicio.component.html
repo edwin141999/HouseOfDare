@@ -68,10 +68,14 @@
                                               id="button-addon2">
                                               Agregar
                                             </button>
+                                        <div class="invalid-feedback">
+                                            <span *ngIf="registerNameForm.get('name')?.errors?.required" >Por favor introduzca 2 nombres o más
+                                            </span>
+                                            </div>
                                         </div>
                                       </form>
                                     <button
-                                    class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar" (click)="goSeleccionReto()" data-bs-toggle="modal" data-bs-target="#modalLista">
+                                    class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar" (click)="goSeleccionReto()"> <!-- data-bs-toggle="modal" data-bs-target="#modalLista" -->
                                     Confirmar
                                   </button>
                                 </div>

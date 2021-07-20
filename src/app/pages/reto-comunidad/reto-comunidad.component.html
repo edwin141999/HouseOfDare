@@ -39,14 +39,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="fade modal" tabindex="-1" id="modalAgradecer">
-                    <div class="modal-dialog">
+                <div class="fade modal" tabindex="-1" id="modalAgradecer" >
+                    <div class="modal-dialog" *ngIf="save==false">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>¡Gracias por ayudar!</p>
+                                <p>Ingrese los datos requeridos</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-dialog" *ngIf="save==true">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Gracias por ayudar</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -68,7 +81,7 @@
                                                     <hr class="border-secondary mb-0 mt-0"/> 
                                                 </div>
                                                 <div class="col-auto">
-                                                    <div class="bg-primary p-1" style="transform: rotate(45deg);"></div>                                                     
+                                                    <div class="bg-primary p-1" style="transform: rotate(45deg);"></div>   
                                                 </div>
                                                 <div class="col">
                                                     <hr class="border-secondary mb-0 mt-0"/> 
@@ -77,20 +90,33 @@
                                         </div>                                         
                                         <form (ngSubmit)="onSave()" [formGroup]='comunidadForm'> 
                                             <div class="mb-3"> 
-                                                <select class="form-select border border-1 border-primary btn dropdown-toggle" formControlName='dificultad' [class]="esValido('dificultad')">
-                                                    <option selected disabled>Selecciona una dificultad</option>
-                                                    <option>Facil</option>
-                                                    <option>Normal</option>
-                                                    <option>Dificil</option>
+                                                <select class="form-select border border-1 border-primary btn dropdown-toggle" formControlName='categoria' [class]="esValido('categoria')">
+                                                    <option selected disabled>Selecciona una categoria</option>
+                                                    <option>Clasico</option>
+                                                    <option>Familiar</option>
+                                                    <option>Menor de edad</option>
+                                                    <option>Fiesta</option>
+                                                    <option>Antro</option>
+                                                    <option>Ligero</option>
                                                     <option>Extremo</option>
                                                 </select>
-                                            </div>                                             
+                                                <div class="invalid-feedback">
+                                                    <span *ngIf="comunidadForm.get('categoria')?.errors?.required">
+                                                        Seleccione una categoria
+                                                    </span>
+                                                </div> 
+                                            </div>              
                                             <div class="mb-3"> 
-                                                <textarea class="form-control rounded-0" rows="6" placeholder="Escribe tu reto" required="true" formControlName='descripcion' [class]="esValido('descripcion')" ></textarea> 
+                                                <textarea class="form-control rounded-0" rows="6" placeholder="Escribe tu reto" required="true" formControlName='descripcion' [class]="esValido('descripcion')" ></textarea>
+                                                <div class="invalid-feedback">
+                                                    <span *ngIf="comunidadForm.get('descripcion')?.errors?.required">
+                                                        Escriba un reto
+                                                    </span>
+                                                </div>    
                                             </div>                                             
                                             <div class="mb-3"> 
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control rounded-0" aria-label="Recipient's username" aria-describedby="button-addon2" placeholder="Nombre (opcional)" formControlName='retador' >
+                                                    <input type="text" class="form-control rounded-0" aria-label="Recipient's username" aria-describedby="button-addon2" placeholder="Nombre (opcional)" formControlName='retador'>
                                                     <button type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" class="bi bi-question text-primary" viewBox="0 0 16 16" preserveAspectRatio> 
                                                             <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
@@ -98,8 +124,9 @@
                                                     </button>
                                                 </div>                                                 
                                             </div>
-                                            <button type="submit" class="btn d-block w-100 btn-primary rounded-0 text-uppercase" (click)='goComunidad()' data-bs-toggle="modal" data-bs-target="#modalAgradecer" >CONFIRMAR</button>                                             
-                                        </form>                                          
+                                            <button type="submit" class="btn d-block w-100 btn-primary rounded-0 text-uppercase" data-bs-toggle="modal" data-bs-target="#modalAgradecer"
+                                            >CONFIRMAR</button>
+                                        </form>                                 
                                     </div>                                     
                                 </div>                                 
                             </section>

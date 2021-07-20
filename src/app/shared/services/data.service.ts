@@ -6,7 +6,6 @@ import {
 import { Observable } from 'rxjs';
 
 export interface Comunidad {
-  // id: string;
   dificultad: string;
   description: string;
   retador: string;

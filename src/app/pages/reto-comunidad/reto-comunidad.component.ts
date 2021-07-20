@@ -11,6 +11,7 @@ import { DataService } from 'src/app/shared/services/data.service';
 })
 export class RetoComunidadComponent implements OnInit {
   comunidadForm!: FormGroup;
+  public save: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -24,20 +25,30 @@ export class RetoComunidadComponent implements OnInit {
 
   private initForm(): void {
     this.comunidadForm = this.fb.group({
-      dificultad: ['', [Validators.required]],
+      categoria: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
-      retador: ['', [Validators.required]],
+      retador: [''],
+      megusta: 0,
+      nomegusta: 0,
     });
   }
 
   async onSave(): Promise<void> {
+    if (
+      this.comunidadForm.value.retador === null ||
+      this.comunidadForm.value.retador === ''
+    ) {
+      this.comunidadForm.value.retador = 'Anonimo';
+    }
     if (this.comunidadForm.valid) {
-      console.log(this.comunidadForm.value);
-      const formValue = this.comunidadForm.value
-      await this.DataSvc.onSaveRetoComunidad(formValue)
-      this.comunidadForm.reset()
+      // console.log(this.comunidadForm.value);
+      const formValue = this.comunidadForm.value;
+      this.save = true;
+      await this.DataSvc.onSaveRetoComunidad(formValue);
+      this.comunidadForm.reset();
     } else {
       console.log('Not Valid');
+      this.save = false;
     }
   }
 

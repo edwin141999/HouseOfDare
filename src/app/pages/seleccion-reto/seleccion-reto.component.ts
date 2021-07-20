@@ -45,6 +45,7 @@ export class SeleccionRetoComponent implements OnInit {
   }
 
   obtenerCategoria(dato: string) {
+    this.tipo = false;
     this.categoria = dato;
     this.extraerFiltro$ = this.db.getRetoCategoria(this.categoria);
     this.extraerFiltroComunidad$ = this.db.getRetoComunidadCategoria(
@@ -75,9 +76,10 @@ export class SeleccionRetoComponent implements OnInit {
     //COMUNIDAD
     this.aux2 = [];
     this.extraerFiltroComunidad$.subscribe((reto) => {
+      console.log(reto);
       var random = Math.round(Math.random() * (reto.length - 1));
       this.aux2.push(reto[random]);
-      this.selectRetoComunidad$ = of(this.aux2)
+      this.selectRetoComunidad$ = of(this.aux2);
     });
   }
 
@@ -85,5 +87,8 @@ export class SeleccionRetoComponent implements OnInit {
     var random = Math.round(Math.random() * (this.listaNombre.length - 1));
     this.pos = random;
     this.nombreRandom = this.listaNombre.value[random];
+  }
+
+  onSaveLikes(){
   }
 }

@@ -17,6 +17,7 @@ import { HelperService } from 'src/app/shared/services/helper.service';
 export class InicioComponent implements OnInit {
   registerNameForm!: FormGroup;
   nombres = new FormArray([]);
+  public contador = 0;
 
   constructor(
     private router: Router,
@@ -33,10 +34,8 @@ export class InicioComponent implements OnInit {
 
   goSeleccionReto(): boolean {
     if (this.nombres.length < 2) {
-      console.log('no');
       return false;
     } else {
-      console.log('si');
       this.router.navigate(['seleccionReto']);
       return true;
     }
@@ -44,6 +43,7 @@ export class InicioComponent implements OnInit {
 
   addNombre() {
     if (this.registerNameForm.valid) {
+      this.contador+=1
       // console.log(this.registerNameForm.value);
       let nombre = this.registerNameForm.value.name;
       this.registerNameForm.reset();

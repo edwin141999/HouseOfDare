@@ -65,19 +65,24 @@
                                           <button
                                               class="border-danger btn btn-outline-info text-primary"
                                               type="submit"
-                                              id="button-addon2">
+                                              id="button-addon2" [disabled]="registerNameForm.invalid">
                                               Agregar
                                             </button>
                                         <div class="invalid-feedback">
-                                            <span *ngIf="registerNameForm.get('name')?.errors?.required" >Por favor introduzca 2 nombres o más
+                                            <span *ngIf="registerNameForm.get('name')?.errors?.required">Por favor introduzca un nombre
                                             </span>
                                             </div>
                                         </div>
                                       </form>
                                     <button
-                                    class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar" (click)="goSeleccionReto()"> <!-- data-bs-toggle="modal" data-bs-target="#modalLista" -->
+                                    class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar" (click)="goSeleccionReto()" [disabled]="contador<2"> <!-- data-bs-toggle="modal" data-bs-target="#modalLista" -->
                                     Confirmar
                                   </button>
+                                  <div>
+                                      <span *ngIf="contador<2">
+                                          Debe de haber 2 o mas participantes
+                                      </span>
+                                  </div>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Comunidad } from 'src/app/shared/models/comunidad.interface';
 import { Retos } from 'src/app/shared/models/retos.interface';
@@ -28,8 +29,15 @@ export class SeleccionRetoComponent implements OnInit {
   public extraerFiltroComunidad$!: Observable<Comunidad[]>;
   public selectRetoComunidad$!: Observable<Comunidad[]>;
   public aux2: Comunidad[] = [];
+  //LISTA
+  public auxParticipantes = new FormArray([]);
+  // public prueba: boolean = true;
 
-  constructor(private helper: HelperService, private db: DatabaseService) {}
+  constructor(
+    private helper: HelperService,
+    private db: DatabaseService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     const lista = this.helper.getNombres();
@@ -38,6 +46,9 @@ export class SeleccionRetoComponent implements OnInit {
     for (let i = 0; i < this.llenadoLista.value[0].length; i++) {
       // console.log(this.llenadoLista.value[0][i]);
       this.listaNombre.push(new FormControl(this.llenadoLista.value[0][i]));
+      this.auxParticipantes.push(
+        new FormControl(this.llenadoLista.value[0][i])
+      );
     }
     //retornar todas las cartas
     this.allRetos$ = this.db.getAllRetos();
@@ -60,6 +71,7 @@ export class SeleccionRetoComponent implements OnInit {
       this.listaNombre.removeAt(this.pos);
       this.actualizarReto();
       this.actualizarListaParticipantes();
+      console.log(this.listaNombre.length);
     } else {
       this.actualizarReto();
       this.actualizarListaParticipantes();
@@ -76,7 +88,6 @@ export class SeleccionRetoComponent implements OnInit {
     //COMUNIDAD
     this.aux2 = [];
     this.extraerFiltroComunidad$.subscribe((reto) => {
-      console.log(reto);
       var random = Math.round(Math.random() * (reto.length - 1));
       this.aux2.push(reto[random]);
       this.selectRetoComunidad$ = of(this.aux2);
@@ -89,6 +100,15 @@ export class SeleccionRetoComponent implements OnInit {
     this.nombreRandom = this.listaNombre.value[random];
   }
 
-  onSaveLikes(){
+  chargeGame() {
+    console.log('entra');
+
+    this.listaNombre = this.auxParticipantes;
+    this.router.navigate(['inicio']);
+    // if (bandera == false) {
+    //   this.router.navigate(['inicio'])
+    // } else if (bandera == true) {
+    //   this.router.navigate(['seleccionReto'])
+    // }
   }
 }

@@ -31,11 +31,9 @@
                                 <div class="bg-transparent card-body">
                                     <h5 class="card-title">Selecciona una categoria</h5>
                                     <div class="flex-column mb-4 mt-4 nav nav-fill nav-justified nav-pills" id="nav-tab" role="tablist">
-                                        <a class="active fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Clasico')" >Clasico</a>
-                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Familiar')" >Familiar</a>
-                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Menor de edad')" >Menor de edad</a>
+                                        <a class="active fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Familiar')" >Familiar</a>
+                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Niños')" >Niños</a>
                                         <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Fiesta')" >Fiesta</a>
-                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Antro')" >Antro</a>
                                         <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Ligero')" >Ligero</a>
                                         <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Extremo')" >Extremo</a>
                                     </div>
@@ -79,7 +77,24 @@
                                     </ul>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade modal" tabindex="-1" *ngIf="this.listaNombre.length == 1" id="reloadModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Han pasado todos los participantes</h5>
+                                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                </div>
+                                <div class="modal-body">
+                                    <p>¿Desea reiniciar el juego?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)='chargeGame()'>Reiniciar</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)='chargeGame()'>Volver a seleccionar Categoria</button>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +214,7 @@
                                 </div>
                             </div>
                             <a (click)="retoCumplido(false)" class="btn btn-danger me-1 ms-1 pb-2 pe-3 ps-3 pt-2">No hecho</a>
-                            <a (click)="retoCumplido(true)" class="btn btn-success me-1 ms-1 pb-2 pe-3 ps-3 pt-2 text-light">Hecho</a>
+                            <a (click)="retoCumplido(true)" class="btn btn-success me-1 ms-1 pb-2 pe-3 ps-3 pt-2 text-light" data-bs-toggle="modal" data-bs-target="#reloadModal">Hecho</a>
                         </div>
                     </div>
                 </div>

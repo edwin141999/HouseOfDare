@@ -68,7 +68,8 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Modal body text goes here.</p>
+                                    <p>Retos: En esta sección podras ver los retos que la casa ha propuesto para ti.</p>
+                                    <p>Comunidad: Aquí podrás ver los retos propuestos por ti y los otros usuarios de la comunidad mediante nuestra sección de <a href="comunidad">crear reto</a></p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
@@ -99,7 +100,7 @@
                                       </tr>
                                     </table>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer justify-content-center">
                                     <form (ngSubmit)="addNombre()" [formGroup]="registerNameForm">
                                         <div class="input-group mb-3">
                                           <input type="text" class="bg-light border-danger form-control" formControlName="name" placeholder="Nombre" aria-label="Recipient's username" aria-describedby="button-addon2" required="true" [class]="esValido('name')">
@@ -109,7 +110,6 @@
                                               id="button-addon2" [disabled]="registerNameForm.invalid">
                                               Agregar
                                             </button>
-                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
                                         <div class="invalid-feedback">
                                             <span *ngIf="registerNameForm.get('name')?.errors?.required">Por favor introduzca un nombre
                                             </span>

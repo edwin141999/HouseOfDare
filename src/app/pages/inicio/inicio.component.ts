@@ -18,6 +18,7 @@ export class InicioComponent implements OnInit {
   registerNameForm!: FormGroup;
   nombres = new FormArray([]);
   public contador = 0;
+  public cambiarVista: boolean = false;
 
   constructor(
     private router: Router,
@@ -43,7 +44,7 @@ export class InicioComponent implements OnInit {
 
   addNombre() {
     if (this.registerNameForm.valid) {
-      this.contador+=1
+      this.contador += 1;
       // console.log(this.registerNameForm.value);
       let nombre = this.registerNameForm.value.name;
       this.registerNameForm.reset();
@@ -67,5 +68,13 @@ export class InicioComponent implements OnInit {
       : validateField?.touched
       ? 'is-valid'
       : '';
+  }
+
+  goCreateRetoComunidad() {
+    this.router.navigate(['comunidad']);
+  }
+
+  goInicio() {
+    this.cambiarVista = true
   }
 }

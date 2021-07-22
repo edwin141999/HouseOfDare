@@ -26,18 +26,30 @@
                 <div class="container">
                     <div class="pt-5 row">
                         <div class="col-lg-8 col-xl-6 mx-auto">
-                            <h1 class="display-4 fw-normal mb-3 text-light">JUGAR</h1>
+                            <div class="container pb-4 pt-4">
+                                <div class="align-items-center row">
+                                    <div class="col">
+                                        <hr class="bg-white border-white mb-0 mt-0"/> 
+                                    </div>
+                                    <div class="col-auto">
+                                        <h2 class="fw-bold h4 mb-0 text-light text-uppercase">categorias</h2> 
+                                    </div>
+                                    <div class="col">
+                                        <hr class="bg-white border-white mb-0 mt-0"/> 
+                                    </div>
+                                </div>
+                            </div>
                             <div class="card mb-5 pt-2">
                                 <div class="bg-transparent card-body">
                                     <h5 class="card-title">Selecciona una categoria</h5>
                                     <div class="flex-column mb-4 mt-4 nav nav-fill nav-justified nav-pills" id="nav-tab" role="tablist">
-                                        <a class="active fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Familiar')" >Familiar</a>
+                                        <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Familiar')" >Familiar</a>
                                         <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Niños')" >Niños</a>
                                         <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Fiesta')" >Fiesta</a>
                                         <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Ligero')" >Ligero</a>
                                         <a class="fw-bold nav-link" role="button" aria-controls="nav-profile" aria-selected="false" target="_pg_blank" data-bs-toggle="pill" (click)="obtenerCategoria('Extremo')" >Extremo</a>
                                     </div>
-                                    <button class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar" (click)="bandera=true">Confirmar</button>
+                                    <button class="btn btn-success pb-2 pe-3 pt-2 shadow-sm text-light" target="_pg_blank" type="button" id="confirmar" (click)="bandera=true" [disabled]="confirmarCategoria==false">Confirmar</button>
                                 </div>
                             </div>
                         </div>
@@ -71,37 +83,58 @@
                                     <h5 class="modal-title">Lista de participantes</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <ul class="list-group list-group-flush" *ngFor="let nombre of listaNombre.controls;index as i">
-                                        <li class="bg-transparent list-group-item text-primary" >{{nombre.value}}</li>
-                                    </ul>
+                                <div class="modal-body card border-0 pt-2">
+                                    <table class="mb-1 mt-1">
+                                        <tr *ngFor="let nombre of listaNombre.controls;index as i">
+                                        <td>{{ nombre.value }}</td>
+                                        <td class="text-center w-25">
+                                        <form (ngSubmit)="removeNombre(i)">
+                                            <button
+                                            type="submit"
+                                            class="btn-close"
+                                            aria-label="Close"
+                                          ></button>
+                                        </form>
+                                        </td>
+                                      </tr>
+                                    </table>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cerrar</button>
+                                    <form (ngSubmit)="addNombre()" [formGroup]="registerNameForm">
+                                        <div class="input-group mb-3">
+                                          <input type="text" class="bg-light border-danger form-control" formControlName="name" placeholder="Nombre" aria-label="Recipient's username" aria-describedby="button-addon2" required="true" [class]="esValido('name')">
+                                          <button
+                                              class="border-danger btn btn-outline-info text-primary"
+                                              type="submit"
+                                              id="button-addon2" [disabled]="registerNameForm.invalid">
+                                              Agregar
+                                            </button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                                        <div class="invalid-feedback">
+                                            <span *ngIf="registerNameForm.get('name')?.errors?.required">Por favor introduzca un nombre
+                                            </span>
+                                            </div>
+                                        </div>
+                                      </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="fade modal" tabindex="-1" *ngIf="this.listaNombre.length == 1" id="reloadModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Han pasado todos los participantes</h5>
-                                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                                </div>
-                                <div class="modal-body">
-                                    <p>¿Desea reiniciar el juego?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)='chargeGame()'>Reiniciar</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)='chargeGame()'>Volver a seleccionar Categoria</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pt-5 row">
+                    <div class="pt-2 row">
                         <div class="bg-transparent col-lg-8 col-xl-6 mx-auto">
-                            <h1 class="display-4 fw-normal mb-3 text-light">JUGAR</h1>
+                            <div class="container pb-4 pt-4">
+                                <div class="align-items-center row">
+                                    <div class="col">
+                                        <hr class="bg-white border-white mb-0 mt-0"/> 
+                                    </div>
+                                    <div class="col-auto">
+                                        <h2 class="fw-bold h4 mb-0 text-light text-uppercase">jugar</h2> 
+                                    </div>
+                                    <div class="col">
+                                        <hr class="bg-white border-white mb-0 mt-0"/> 
+                                    </div>
+                                </div>
+                            </div>
                             <div class="bg-transparent card mb-4">
                                 <div class="bg-light card p-1">
                                     <div>
@@ -148,7 +181,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <h5 class="card-title fs-6">Retado: {{nombreRandom}}</h5>
+                                                    <h5 *ngIf="!pasar" class="card-title fs-6">Retado: {{nombreRandom}}</h5>
+                                                    <h5 *ngIf="pasar" class="card-title fs-6">YA NO HAY MAS PARTICIPANTES</h5>
                                                 </div>
                                                 <div class="tab-pane fade show active" id="nav-comunidad" role="tabpanel" *ngIf="tipo"  aria-labelledby="nav-comunidad-tab">
                                                     <div class="container pb-4 pt-4">
@@ -207,48 +241,23 @@
                                             </div>
                                             <div class="justify-content-md-center nav nav-fill nav-justified shadow-sm" id="nav-tab" role="tablist">
                                                 <a class="align-items-center border-end border-top nav-link" href="#" role="tab" data-bs-target="#participantesModal" data-bs-toggle="modal">Participantes</a>
-                                                <a class="border-top nav-link" href="#nav-comunidad" (click)="bandera=false" role="tab" target="_pg_blank" id="cambiarDificultad">Dificultad</a>
+                                                <a class="border-top nav-link" type="button" (click)="cambiarVista()" role="tab" target="_pg_blank" id="cambiarDificultad" >Categoria</a>
                                             </div>
                                         </nav>
                                     </div>
                                 </div>
                             </div>
-                            <a (click)="retoCumplido(false)" class="btn btn-danger me-1 ms-1 pb-2 pe-3 ps-3 pt-2">No hecho</a>
-                            <a (click)="retoCumplido(true)" class="btn btn-success me-1 ms-1 pb-2 pe-3 ps-3 pt-2 text-light" data-bs-toggle="modal" data-bs-target="#reloadModal">Hecho</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-<!--             <div class="container pb-4 pt-4">
-                <div class="align-items-center row">
-                    <div class="col">
-                        <hr class="bg-light border-danger mb-0 mt-0"/> 
-                    </div>
-                    <div class="col-auto">
-                        <span class="bg-danger d-block p-1 rounded-circle"><svg viewBox="0 0 24 24" fill="none" width="24" height="24" class="d-block text-white">
-                                <path d="M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z" fill="currentColor"/>
-                            </svg></span> 
-                    </div>
-                    <div class="col">
-                        <hr class="bg-light border-danger mb-0 mt-0"/> 
-                    </div>
-                </div>
-            </div>
-            <section class="bg-transparent pt-5 text-center">
-                <div class="container">
-                    <div class="mb-4 mt-2 row">
-                        <div class="bg-transparent col-lg-8 col-xl-6 mx-auto">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">¡Crea tus propios retos!</h5>
-                                    <p class="card-text">Ayudanos y has crecer el sitio creando tus propios retos</p>
-                                    <a href="#" class="btn btn-primary" target="_pg_blank">Crear</a>
-                                </div>
+                            <div *ngIf=!pasar>
+                                <button (click)="retoCumplido(false)" class="btn btn-danger me-1 ms-1 pb-2 pe-3 ps-3 pt-2">No hecho</button>
+                                <button (click)="retoCumplido(true)" class="btn btn-success me-1 ms-1 pb-2 pe-3 ps-3 pt-2 text-light">Hecho</button>
+                            </div>
+                            <div *ngIf="pasar">
+                                <a (click)="chargeGame()" class="btn btn-danger me-1 ms-1 pb-2 pe-3 ps-3 pt-2">Reiniciar juego</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section> -->
+            </section>
         </div>
     </body>
 </html>

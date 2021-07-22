@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Comunidad } from 'src/app/shared/models/comunidad.interface';
@@ -13,7 +19,7 @@ import { HelperService } from 'src/app/shared/services/helper.service';
   styleUrls: ['./seleccion-reto.component.css'],
 })
 export class SeleccionRetoComponent implements OnInit {
-  llenadoLista = new FormArray([]);
+  nombreIngresado = new FormArray([]);
   listaNombre = new FormArray([]);
   public bandera: boolean = false;
   public tipo: boolean = false;
@@ -31,31 +37,45 @@ export class SeleccionRetoComponent implements OnInit {
   public aux2: Comunidad[] = [];
   //LISTA
   public auxParticipantes = new FormArray([]);
-  // public prueba: boolean = true;
+  public pasar: boolean = false;
+  registerNameForm!: FormGroup;
+  nombres = new FormArray([]);
+  public confirmarCategoria: boolean = false;
 
   constructor(
     private helper: HelperService,
     private db: DatabaseService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    const lista = this.helper.getNombres();
-    this.llenadoLista.push(lista);
-    //agrega los nombres en una lista
-    for (let i = 0; i < this.llenadoLista.value[0].length; i++) {
-      // console.log(this.llenadoLista.value[0][i]);
-      this.listaNombre.push(new FormControl(this.llenadoLista.value[0][i]));
-      this.auxParticipantes.push(
-        new FormControl(this.llenadoLista.value[0][i])
-      );
-    }
+    this.updateParticipantes();
     //retornar todas las cartas
     this.allRetos$ = this.db.getAllRetos();
     this.allRetosComunidad$ = this.db.getAllRetosComunidad();
+
+    this.registerNameForm = this.formBuilder.group({
+      name: ['', Validators.required],
+    });
+  }
+
+  updateParticipantes() {
+    //Limpias la lista para extraer datos
+    this.nombreIngresado.clear();
+    //relleno la lista con los datos
+    const nombre = this.helper.getNombres();
+    this.nombreIngresado.push(nombre);
+    //agrega los nombres a mi lista principal
+    for (let i = 0; i < this.nombreIngresado.value[0].length; i++) {
+      // console.log(this.llenadoLista.value[0][i]);
+      this.listaNombre.push(new FormControl(this.nombreIngresado.value[0][i]));
+      // this.auxParticipantes.push(new FormControl(this.nombreIngresado.value[0][i]));
+    }
   }
 
   obtenerCategoria(dato: string) {
+    this.confirmarCategoria = true;
     this.tipo = false;
     this.categoria = dato;
     this.extraerFiltro$ = this.db.getRetoCategoria(this.categoria);
@@ -66,16 +86,22 @@ export class SeleccionRetoComponent implements OnInit {
     this.actualizarListaParticipantes();
   }
 
+  cambiarVista() {
+    this.confirmarCategoria = false;
+    this.bandera = false;
+  }
+
   retoCumplido(cumplio: boolean) {
     if (cumplio) {
+      const sacarNombre = this.listaNombre.at(this.pos);
+      this.auxParticipantes.push(sacarNombre);
       this.listaNombre.removeAt(this.pos);
-      this.actualizarReto();
-      this.actualizarListaParticipantes();
-      console.log(this.listaNombre.length);
-    } else {
-      this.actualizarReto();
-      this.actualizarListaParticipantes();
+      if (this.listaNombre.length == 0) {
+        this.pasar = true;
+      }
     }
+    this.actualizarReto()
+    this.actualizarListaParticipantes()
   }
 
   actualizarReto() {
@@ -101,14 +127,42 @@ export class SeleccionRetoComponent implements OnInit {
   }
 
   chargeGame() {
-    console.log('entra');
+    // console.log(this.auxParticipantes.value);
+    for (let i = 0; i <  this.auxParticipantes.value.length; i++) {
+      // console.log(this.auxParticipantes.value[i]);
+      this.listaNombre.push(new FormControl(this.auxParticipantes.value[i]))
+    }
+    this.auxParticipantes.clear()
+    // this.listaNombre = this.auxParticipantes;
+    // this.auxParticipantes = this.listaNombre
+    this.actualizarListaParticipantes();
+    this.actualizarReto();
+    this.pasar = false;
+  }
 
-    this.listaNombre = this.auxParticipantes;
-    this.router.navigate(['inicio']);
-    // if (bandera == false) {
-    //   this.router.navigate(['inicio'])
-    // } else if (bandera == true) {
-    //   this.router.navigate(['seleccionReto'])
-    // }
+  addNombre() {
+    if (this.registerNameForm.valid) {
+      this.nombres.clear();
+      let nombre = this.registerNameForm.value.name;
+      this.registerNameForm.reset();
+      this.nombres.push(new FormControl(nombre));
+      this.helper.setNombresList(this.nombres);
+      this.updateParticipantes();
+    } else {
+      console.log('Not Valid');
+    }
+  }
+
+  removeNombre(index: number) {
+    this.listaNombre.removeAt(index);
+  }
+
+  esValido(field: string): string {
+    const validateField = this.registerNameForm.get(field);
+    return !validateField?.valid && validateField?.touched
+      ? 'is-invalid'
+      : validateField?.touched
+      ? 'is-valid'
+      : '';
   }
 }
